@@ -1,0 +1,58 @@
+/**
+ * Typehead
+ */
+.typeheadContainer{
+    outline: currentcolor none medium; 
+    position: relative;
+}
+
+.typeheadInputContainer{
+    display: flex; 
+    flex: 1 1 0%; 
+    height: 100%; 
+    position: relative;
+}
+
+.typeheadItemContainer{
+    position: absolute;
+    display: block;
+    max-height: 400px;
+    /*overflow: auto;*/
+    will-change: transform;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    transform: translate3d(0px, 38px, 0px);
+    background: #FFF;
+}
+
+.typeheadItemSubContainer{
+    position: relative;
+    /*display: block;*/
+    max-height: 380px;
+    overflow: auto;
+    /*will-change: transform;*/
+    width: 100%;
+/*    top: 30px;
+    left: 0px;
+    transform: translate3d(0px, 38px, 0px);
+    background: #FFF;
+*/
+}
+
+.typeheadItem{
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    padding: 2px 0;
+}
+
+.avatar{
+    width: 40px;
+    width: 40px;
+}
