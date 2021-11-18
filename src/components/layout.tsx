@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../app/hooks';
 import Link from 'next/link';
 import Head from 'next/head';
 import { Container, Navbar, Nav, NavDropdown, Toast } from 'react-bootstrap';
-import { Message, hideMessage } from '../app/reducer/messageSlice';
+import { Message, hideMessage } from 'app/reducer/messageSlice';
 
 function Layout({ children }) {
     const dispatch = useAppDispatch();
@@ -25,8 +25,8 @@ function Layout({ children }) {
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="me-auto">
-                                    <Nav.Link as={Link} href="/">Home</Nav.Link>
-                                    <Nav.Link as={Link} href="/about">About Me</Nav.Link>
+                                    <span className="nav-link"><Link href="/" >Home</Link></span>
+                                    <span className="nav-link"><Link href="/about" >About Me</Link></span>
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>

@@ -1,12 +1,12 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 
-import typeheadReducer from './reducer/typeheadSlice'
+import githubTypeheadReducer from 'components/github-typehead/githubTypeheadSlice'
 import messageReducer from './reducer/messageSlice'
 
 export function makeStore() {
     return configureStore({
         reducer: { 
-            typehead: typeheadReducer,
+            githubTypehead: githubTypeheadReducer,
             message: messageReducer
         },
     })

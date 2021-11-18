@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk, createEntityAdapter} from "@reduxjs/toolkit";
-import type { AppState, AppThunk } from '../../app/store'
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { showMessage } from './messageSlice';
+import type { AppState, AppThunk } from 'app/store'
+import { useAppSelector, useAppDispatch } from 'app/hooks';
+import { showMessage } from 'app/reducer/messageSlice';
 import axios from "axios";
 
 const perPage = 50;
 const minLength = 3;
 
 export const searchUser = createAsyncThunk('search/user', async (params: any, { dispatch }) => {
-    dispatch(setKeyword(params.keyword));
+    dispatch(setTypeheadKeyword(params.keyword));
 
     if (params.keyword.length < minLength) {
         return {
@@ -19,7 +19,8 @@ export const searchUser = createAsyncThunk('search/user', async (params: any, { 
 
     const response = await axios
         .get(`https://api.github.com/search/users?q=${params.keyword}&page=${params.page}&per_page=${perPage}`, {
-            cancelToken: params.source.token // use to cancel previous request
+            // use to cancel previous request
+            cancelToken: params.source.token
         })
         .catch((error) => {
             dispatch(showMessage({
@@ -58,7 +59,7 @@ export const typeheadSlice = createSlice({
         total_page: 0
     },
     reducers: {
-        setKeyword: (state, action) => {
+        setTypeheadKeyword: (state, action) => {
             state.keyword = action.payload;
         },
         resetTypehead: (state, action) => {
@@ -72,7 +73,6 @@ export const typeheadSlice = createSlice({
         builder
             .addCase(searchUser.fulfilled, (state, action) => {
                 const currentItems = state.items;
-                // state.keyword = action.payload.keyword;
                 state.page = action.payload.page;
 
                 if (action.payload.data){
@@ -99,7 +99,7 @@ export const typeheadSlice = createSlice({
     }
 });
 
-export const { resetTypehead, setKeyword } = typeheadSlice.actions;
-export const Typehead = (state: any) => state.typehead
+export const { resetTypehead, setTypeheadKeyword } = typeheadSlice.actions;
+export const GithubTypeheadState = (state: any) => state.githubTypehead
 
 export default typeheadSlice.reducer;
